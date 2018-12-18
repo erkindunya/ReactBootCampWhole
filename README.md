@@ -1,167 +1,44 @@
-# ReactJS Facebook messenger
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The goal of this exercise is to learn how to do Server-Side Rendering (SSR) in React using Redux, GraphQL, and Styled-Components.
+## Available Scripts
 
-## To get started
+In the project directory, you can run:
 
-### Step 1
+### `npm start`
 
-If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### Step 2
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-```sh
- git checkout SSR-part1
-```
+### `npm test`
 
-### Step 3
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```sh
- npm i
-```
+### `npm run build`
 
-## Exercise
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Part 1
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-#### Configure Webpack
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- In config/paths.js, edit the file and add the following line after `appBuild`:
+### `npm run eject`
 
-  `serverBuild: resolveApp('build/server'),`
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-- In config/paths.js, edit the following export key `appIndexJs` to be:
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-  `appIndexJs: resolveApp('src/client/index.js'),`
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- In config/paths.js, edit the file and add the following line after `appIndexJs`:
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-  `serverIndexJs: resolveApp('src/server/index.js'),`
+## Learn More
 
-- Copy webpack.config.dev.js and name it webpack.config.server.base.js
-- In webpack.config.server.base.js, comment line 48: require.resolve('react-dev-utils/webpackHotDevClient'),
-- In webpack.config.server.base.js, replace in the entry `paths.appIndexJs` for `paths.serverIndexJs`
-- In webpack.config.server.base.js, comment the `ouput`. We are setting the output in webpack.config.server.js
-- In webpack.config.server.base.js, comment the `plugin` ModuleScopePlugin. This is because the fake api needs to import mocks from public/static/mocks.
-- In webpack.config.server.base.js, replace the module.rules `test: /\.css$/,` by:
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-```
-{
-  test: /\.css$/,
-  use: [
-    'isomorphic-style-loader',
-    {
-      loader: 'css-loader',
-      options: {
-        importLoaders: 1
-      }
-    }
-  ]
-},
-```
-
-- In webpack.config.server.base.js, comment all the plugins:
-
-#### Edit scripts/start.js
-
-Make the following edits in scripts/start.js :
-
-- `const { exec } = require('child_process')` at the beginnig of the file
-- Replace this line `const compiler = createCompiler(webpack, config, appName, urls, useYarn);` with `const compiler = webpack(config)`
-- Replace
-
-```
-if (isInteractive) {
-  clearConsole();
-}
-console.log(chalk.cyan('Starting the development server...\n'));
-openBrowser(urls.localUrlForBrowser);
-```
-
-with
-
-```
-process.env.REACT_APP_CLIENT_PORT = port
-process.env.REACT_APP_SERVER_PORT = 8888
-const configWebpackServer = require('../config/webpack.config.server')
-const compiler = webpack(configWebpackServer)
-const urls = prepareUrls(protocol, HOST, process.env.REACT_APP_SERVER_PORT)
-let isServerRunning
-
-compiler.watch({}, (err, stats) => {
-  if (err) console.log('error on webpack server', err)
-
-  if (!isServerRunning) {
-    isServerRunning = true
-    const nodemon = exec(
-      'nodemon --watch build/server build/server/index.js build/server/index.js'
-    )
-
-    // This is to outpout in the terminal the child process
-    nodemon.stdout.on('data', (data) => {
-      console.log(data.toString())
-    })
-    nodemon.on('exit', (code) => {
-      console.log(`nodemon process exited with code ${code.toString()}`)
-    })
-
-    console.log(chalk.yellow(`Starting the server on port ${process.env.REACT_APP_SERVER_PORT}...\n`))
-    setTimeout(
-      () => {
-        openBrowser(urls.localUrlForBrowser)
-      },
-      1000
-    )
-  }
-})
-```
-
-### Exercise part 2
-
-```sh
- git checkout SSR-part2
-```
-
-- Navigate to [http://localhost:8888](http://localhost:8888). How do you fix the following error “Invariant Violation: Browser history needs a DOM”? Hint: replace BrowserRouter by StaticRouter on the server.
-- Copy & paste public/index.html into src/server/render.js, then `npm start` the project, and navigate to [http://localhost:8888](http://localhost:8888). Heads up! there are comments in public/index.html using back ticks (\`) so it escapes the string literal of src/server/render.js. Remove the comments in the new src/server/render.js after you copied the index.html
-- In src/server/render.js add the bodyHTML from renderToString in the html element that is the root of the React app.
-- Add a &lt;script&gt; to the bundle.js at the bottom of the &lt;body&gt; in src/server/render.js.
-- (With JS enabled) If you navigate to [http://localhost:8888/crazypeacock512](http://localhost:8888/crazypeacock512), there is a warning that says “Warning: Text content did not match. Server: "Threads" Client: "Conversation with "”. To fix it, you need to add a prop location={req.url} to the router in src/server/index.js.
-- In src/client/index `hydrate` the component tree instead of `render` it.
-- If you disable JS, can you see any Thread or Conversation? Why is that? how can we fix it?
-
-### Exercise part 3
-
-```sh
- git checkout SSR-part3
-```
-
-- Redux
-
-  - In src/server/app.js configure the Redux store with initialState.
-
-- Styled Components
-
-  - In src/server/app.js use [&lt;StyleSheetManager&gt;](https://www.styled-components.com/docs/advanced#server-side-rendering).
-  - In src/server/render.js use [sheet.getStyleTags()](https://www.styled-components.com/docs/advanced#server-side-rendering).
-
-- GraphQL
-  - In src/server/app.js you need to use [getDataFromTree](https://www.apollographql.com/docs/react/features/server-side-rendering.html#getDataFromTree) to execute the GraphQL queries in order to get data in the components.
-  - In src/server/render.js you need to add [window.\_\_APOLLO_STATE](https://github.com/apollographql/react-docs/blob/master/source/server-side-rendering.md) to sync the state on the server and on the client.
-  - In src/client/index you need to [rehydrate the store](https://www.apollographql.com/docs/react/features/server-side-rendering.html#store-rehydration)
-
-### Bonus
-
-- Do we have to do initialize the Redux state in src/client/index with the same state than in src/server/app.js?
-
-## Articles and links
-
-- [https://medium.com/leanjs/universal-create-react-app-step-by-step-b80ba68d125d](https://medium.com/leanjs/universal-create-react-app-step-by-step-b80ba68d125d)
-- [https://dev-blog.apollodata.com/](https://dev-blog.apollodata.com/)
-- [http://dev.apollodata.com](http://dev.apollodata.com)
-- [https://nextjs.org/](https://nextjs.org/)
-- [https://github.com/jaredpalmer/after.js](https://github.com/jaredpalmer/after.js)
-
-## License
-
-This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).
+To learn React, check out the [React documentation](https://reactjs.org/).
