@@ -1,11 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const TopBar = props =>  (
-  <div className="top-bar">
-    <Link to="/messages">
-    <i className="icon fab fa-facebook-messenger" /></Link>
-    <Link to="/profile" className={`username ${props.userPosition || 'right'}`}>Profile<img src="/images/default.jpg" /></Link>
-    </div>
-)
+import { withRouter } from 'react-router-dom'
+import { logOut, getSession } from '../../auth'
 
-export default TopBar
+const TopBar = (props) => {
+  const session = getSession()
+
+  return (
+    <div className="top-bar">
+      <Link to="/messages"><i className="icon fab fa-facebook-messenger" /></Link>
+      <ul className={`${props.userPosition || 'right'}`}>
+        <li>
+          <Link to="/login" onClick={logOut}>log out</Link>
+        </li>
+        <li>
+          <Link to="/profile">
+            {session? session.username: ''} <img src="/images/default.jpg" />
+          </Link>
+        </li>
+      </ul>
+    </div>
+  )
+}
+
+export default withRouter(TopBar)

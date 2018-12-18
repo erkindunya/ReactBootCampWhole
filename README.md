@@ -1,14 +1,53 @@
-# react-data-fetching
+# ReactJS Facebook messenger
 
-[![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/)
+The goal of this exercise is to learn how to style a React app using styled-components.
 
-Showcase on how to perform data fetching in React. Read more about it in this article: [How to fetch data in React?](https://www.robinwieruch.de/react-fetching-data)
+## To get started
 
-## Installation
+### Step 1
 
-* `git clone git@github.com:rwieruch/react-data-fetching.git`
-* `cd react-data-fetching`
-* `npm install`
-* `npm start`
-* visit http://localhost:3000/
+If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
 
+
+### Step 2
+```sh
+ git checkout styling-in-react
+ ```
+
+## Exercise
+
+### Part 1, install styled-components
+
+styled-components is a npm package which we need to add to our project
+```sh
+ npm install --save styled-components
+ ```
+
+### Part 2, sharing variables
+
+You can share variables(like colours in this case) between CSS and JavaScript by using :export from CSS Modules.
+
+Copy the Sass variables from `src/styles/variables.scss` into `src/styles/export/colours.scss`. You have an example on how we export `$white` in `colours.scss`. This way you can share your SASS variables with JavaScript to incrementally migrate the CSS in styled-components.
+
+`src/components/App.js` shows you how we use the Sass `$white` variable as a JavaScript variable.
+
+### Part 3, refactoring
+
+Once you installed styled-components and you have your Sass variables in JS, you can start refactoring your application.
+
+Current styles, which are being mapped to our components via classes, can be found in the index.css file (Sass is being compiled to CSS) which is being imported to the `src/index.js` file. The goal of the refactoring is to migrate those `src/index.js` styles into styled-components.
+
+- To get started, uncomment the `AppWrapper` component in `src/components/App.js`. Follow the comments in that file to get more tips.
+- Take appropriate styles from the stylesheet for each of the component and create styled components within each of the components or as a separate component should you need it (if the styled-component is being used on multiple places).
+- You can work your way through your application, starting with smaller components in the Layout folder to the bigger ones in Messenger.
+
+## Articles and links
+
+- [LeanJS article on Styling in React](https://medium.com/leanjs/styling-in-react-ddfb47eda4d0)
+- [https://www.styled-components.com/](https://www.styled-components.com/)
+- [https://github.com/css-modules/webpack-demo](https://github.com/css-modules/webpack-demo)
+- [https://github.com/css-modules/css-modules/](https://github.com/css-modules/css-modules/)
+
+## License
+
+This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).
