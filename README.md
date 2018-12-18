@@ -1,44 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ReactJS Facebook messenger
 
-## Available Scripts
+The goal of this exercise is to learn how to use GraphQL queries and mutations using Apollo client.
 
-In the project directory, you can run:
+## To get started
 
-### `npm start`
+### Step 1
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+### Step 2
+```sh
+ git checkout graphql-apollo
+ ```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Step 3
+```sh
+ npm i
+ ```
 
-### `npm run build`
+## Exercise
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Part 1
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+ npm start
+ ```
 
-### `npm run eject`
+[http://localhost:3000/graphiql](http://localhost:3000/graphiql)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Query a list of threads and retrieve the username of each thread.
+* Query a conversation. Hint, you need to provide a username.
+* Send a new message.
+* How many threads in the system?
+* How many types do we have in the system?
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Part 2
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. In src/Messenger/components/Threads.js you need to fetch the threads data using a graphql query. You'll find more info about the steps you need to follow at the bottom of src/Messenger/components/Threads.js
+2. In src/Messenger/components/Threads.js, replace the threads query by threadsConnection. Hint, you'll also need to update the threads.map(thread => ...
+3. In src/Messenger/components/Conversation/Content/Messages.js, fetch a conversation by using the conversationConnection query. Hint, you'll need to do the same you did in Threads.js PLUS adding the username variable to the query. You can pass variables to the graphql HoC by doing:
+```
+export default graphql(gql`{ ... }`, {
+  options: props => ({
+    variables: {
+        // variables
+     }
+  }),
+})(MyComponent);
+```
+4. Use the sendMessage mutation to send a message. Sending a message should:
+    * Update the conversation to display the new message
+    * Update the threads to display the new message
+You have some hints at the bottom of src/Messenger/components/Conversation/Content/Messages.js to help you complete task 4
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Bonus
 
-## Learn More
+* Use the getSession query to log in a user instead of calling the REST API
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Articles and links
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*  [https://dev-blog.apollodata.com/explaining-graphql-connections-c48b7c3d6976](https://dev-blog.apollodata.com/explaining-graphql-connections-c48b7c3d6976)
+* [https://www.apollographql.com/docs/react/advanced/caching.html#after-mutations](https://www.apollographql.com/docs/react/advanced/caching.html#after-mutations)
+* [https://www.apollographql.com/docs/react/advanced/caching.html#writequery-and-writefragment](https://www.apollographql.com/docs/react/advanced/caching.html#writequery-and-writefragment)
+* [http://graphql.org/learn/](http://graphql.org/learn/)
+* [http://graphql.org/learn/thinking-in-graphs/](http://graphql.org/learn/thinking-in-graphs/)
+* [https://dev-blog.apollodata.com/graphql-vs-rest-5d425123e34b](https://dev-blog.apollodata.com/graphql-vs-rest-5d425123e34b)
+* [https://dev-blog.apollodata.com/graphql-explained-5844742f195e](https://dev-blog.apollodata.com/graphql-explained-5844742f195e)
+* [https://facebook.github.io/relay/docs/thinking-in-graphql.html](https://facebook.github.io/relay/docs/thinking-in-graphql.html)
+* [https://dev-blog.apollodata.com/the-anatomy-of-a-graphql-query-6dffa9e9e747](https://dev-blog.apollodata.com/the-anatomy-of-a-graphql-query-6dffa9e9e747)
+* [https://github.com/apollographql/apollo-server](https://github.com/apollographql/apollo-server)
+* [https://www.youtube.com/watch?v=PHabPhgRUuU](https://www.youtube.com/watch?v=PHabPhgRUuU)
+* [https://facebook.github.io/relay/graphql/connections.htm](https://facebook.github.io/relay/graphql/connections.htm)
+* [https://dev-blog.apollodata.com/introducing-launchpad-the-graphql-server-demo-platform-cc4e7481fcba](https://dev-blog.apollodata.com/introducing-launchpad-the-graphql-server-demo-platform-cc4e7481fcba)
+* [https://dev-blog.apollodata.com/](https://dev-blog.apollodata.com/)
+* [http://dev.apollodata.com](http://dev.apollodata.com)
+
+## License
+
+This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).
