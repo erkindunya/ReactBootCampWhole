@@ -1,37 +1,22 @@
-# ReactJS Facebook messenger
+# Advanced React Patterns
 
-The goal of this exercise is to learn how to start testing in JavaScript.
+This repo contains some exercises to help you learn the following advanced React Patterns:
 
-## To get started
+- Higher-Order Components (HoCs)
+- Render Callback
+- State Reducer
+- Compound Components
+- Context
+- Theming
+- Style Variants
 
-### Step 1
+## How to install
 
-If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
-
-
-### Step 2
-```sh
- git checkout testing-intro
- ```
-
-### Step 3
-```sh
- npm i
- ```
-
-## Bonus
-
-Use [deepFreeze](https://github.com/substack/deep-freeze) in your reducers to make sure the state is not mutated
-
-
-## Articles and links
-
-- [https://reactjs.academy/blog/unit-testing-fundamentals-explained-using-javascript/](https://reactjs.academy/blog/unit-testing-fundamentals-explained-using-javascript/)
-- [https://martinfowler.com/bliki/TestPyramid.html](https://martinfowler.com/bliki/TestPyramid.html)
-- [https://facebook.github.io/jest/docs/en/expect.html#content](https://facebook.github.io/jest/docs/en/expect.html#content)
-- [https://martinfowler.com/articles/mocksArentStubs.html](https://martinfowler.com/articles/mocksArentStubs.html)
-- [https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)
-- [https://www.youtube.com/watch?v=EZ05e7EMOLM](https://www.youtube.com/watch?v=EZ05e7EMOLM)
+- `git clone git@github.com:reactjs-academy/advanced-react-patterns.git`
+- `cd advanced-react-patterns`
+- `npm i`
+- `npm start`
+- `Open the Browser with the url http://localhost:3000` and you will be ready to start
 
 ## License
 
