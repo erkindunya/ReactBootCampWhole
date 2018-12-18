@@ -3,12 +3,11 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
 
-import colours from '../../../../styles/export/colours.css'
-import { receiveMessage } from "../../../../actions/conversation"
 import * as api from "../../../../api/message"
+import colours from '../../../../styles/export/colours.css'
+import { receiveMessage } from "../../../../actions"
 import Avatar from '../../../Layout/Avatar'
 import Icon from '../../../Layout/Icon'
-import ScrollNotifier from '../../../Layout/ScrollNotifier'
 
 const MessagesWrapper = styled.div`
   display: flex;
@@ -27,7 +26,7 @@ const MessagesList = styled.div`
 `
 
 const NewMessage = styled.div`
-    min-height: 50px;
+    min-height: 20px;
     padding: 1em;
     border-top: 1px solid ${colours.mediumGrey};
     font-size: 0.9rem;
@@ -65,19 +64,13 @@ const Message = styled.div`
     color: ${props => props.from === 'received' ? colours.black : colours.white}
 `
 
-const Loading = styled.p`
-  text-align: center;
-  padding: 10px;
-  font-size: 30px !important;
-`
-
 class Messages extends React.Component {
   state = {
     newMessage: ''
   }
 
   sendMessage = () => {
-    const { username, receiveMessage } = this.props
+    const { username, dispatch } = this.props
     const { newMessage } = this.state
 
     const message = api.sendMessage({
@@ -85,14 +78,14 @@ class Messages extends React.Component {
       to: username
     })
 
-    receiveMessage(message)
+    dispatch(receiveMessage(message))
 
-    this.setState({ newMessage: '' })
+    this.setState({ message: '' })
   }
 
   render() {
-    const { conversation, username, fetchNextPage } = this.props
-    const styledConversation = conversation.data.map((message, i) => (
+    const { conversation = [], username } = this.props
+    const styledConversation = conversation.map((message, i) => (
       <MessageWrapper key={i} from={message.from === "you" ? "sent" : "received"}>
         {message.to === "you" && <Avatar username={username} size="medium" />}
         <Message from={message.from === "you" ? "sent" : "received"}>
@@ -108,22 +101,13 @@ class Messages extends React.Component {
 
     return (
       <MessagesWrapper>
-        <ScrollNotifier
-          onScrollAtTheBottom={fetchNextPage}
-        >
-          <MessagesList>
-            { !conversation.loading && !styledConversation.length ?
-              <p>You have no messages</p>  :
-              <React.Fragment>
-                {styledConversation}
-                {conversation.loading?
-                  <Loading>Loading...</Loading>
-                  : null
-                }
-              </React.Fragment>
-            }
-          </MessagesList>
-        </ScrollNotifier>
+        <MessagesList>
+          {styledConversation.length ? (
+            styledConversation
+          ) : (
+              <p>You have no messages</p>
+            )}
+        </MessagesList>
         <NewMessage>
           <MessageBox
             onChange={e => this.setState({ newMessage: e.target.value })}
@@ -139,13 +123,12 @@ class Messages extends React.Component {
 }
 
 Messages.propTypes = {
-  fetchNextPage: PropTypes.func.isRequired,
-  conversation: PropTypes.object.isRequired,
+  conversation: PropTypes.array,
   username: PropTypes.string.isRequired,
 }
 
-const mapDispatchToProps = ({
-  receiveMessage,
+const mapStateToDispatch = (dispatch) => ({
+  dispatch
 })
 
-export default connect(null, mapDispatchToProps)(Messages)
+export default connect(null, mapStateToDispatch)(Messages)

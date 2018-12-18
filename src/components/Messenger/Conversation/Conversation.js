@@ -4,21 +4,20 @@ import ConversationBar from './ConversationBar'
 import ConversationContent from './Content'
 
 const Conversation = ({
-  conversation, match, fetchNextPage
+  conversation, match
 }) => {
   const { username } = match.params
 
   return ([
     <ConversationBar
+      conversation={conversation}
       key="bar"
       username={username}
       match={match}
-      conversation={conversation}
     />
     ,
     <ConversationContent
       key="content"
-      fetchNextPage={fetchNextPage}
       match={match}
       conversation={conversation}
       username={username}
@@ -27,8 +26,7 @@ const Conversation = ({
 }
 
 Conversation.propTypes = {
-  fetchNextPage: PropTypes.func.isRequired,
-  conversation: PropTypes.object.isRequired,
+  conversation: PropTypes.array,
   match: PropTypes.object.isRequired,
 }
 

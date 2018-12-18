@@ -2,16 +2,14 @@
 // The idea is to show the basics of Redux
 
 export const createStore = (reducer) => {
-  let state = reducer(undefined, { type: '@INIT' })
-  let listeners = []
+  let state = reducer(undefined, { type: '@INIT' })// does it has state
+  let listeners = [] // three state
 
-  const getState = () => {
-    return state;
-  }
+  const getState = () => { return state}
 
-  const dispatch = (action) => {
-    state = reducer(action ,state)
-    listeners.forEach(listener => listener())
+  const dispatch = (action) => {// call reducer with action
+    state = reducer(state,action)// all reducer will recive all action, all the state it care about
+    listeners.forEach(listener => listener())// all commponent are connected
   }
 
   const subscribe = listener => {

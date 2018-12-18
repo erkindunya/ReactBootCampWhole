@@ -15,6 +15,7 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
+
     const { password, email } = this
 
     if (!password || !email) {

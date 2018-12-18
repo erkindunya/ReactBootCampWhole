@@ -1,47 +1,41 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-
-import {
-  receiveConversation,
-  loadingConversation,
-} from '../../../actions/conversation'
 import * as api from '../../../api/message'
 import Conversation from './Conversation'
 
+import {receiveConversation} from '../../actions'
+
 class ConversationContainer extends Component {
+ // state = {
+   // conversation: []
+  //}
+
   componentDidMount() {
     this.fetchConversation(this.props.match.params.username)
   }
 
   fetchConversation = async (username) => {
-    const {
-      api,
-      loadingConversation,
-      receiveConversation,
-      conversation
-    } = this.props
+    const conversation = await api.fetchConversation(username)
+    //this.dispatch({ conversation })
+    this.props.receiveConversation(conversation)
+  }
 
-    try {
-      if (conversation.loading) {
-        return
-      }
-      loadingConversation(true)
-      const nextConversation = await api.fetchConversation(username)
-      receiveConversation(nextConversation)
-      loadingConversation(false)
-    } catch (error) {
-      loadingConversation(false)
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.username !== nextProps.match.params.username) {
+      this.fetchConversation(nextProps.match.params.username)
     }
   }
 
   render() {
     const { match, conversation } = this.props
+    // const { match } = this.props
+    // const { conversation } = this.state
 
     return (
       <Conversation
         conversation={conversation}
-        fetchNextPage={this.fetchConversation}
         match={match}
       />
     )
@@ -50,24 +44,19 @@ class ConversationContainer extends Component {
 
 ConversationContainer.propTypes = {
   match: PropTypes.object.isRequired,
-  conversation: PropTypes.object.isRequired,
+  conversation: PropTypes.array.isRequired,
   receiveConversation: PropTypes.func.isRequired,
 }
-
-ConversationContainer.defaultProps = {
-  api
-}
-
 const mapStateToProps = (state) => ({
-  conversation: state.conversation,
+  conversation: state.conversation
+})
+const mapDispatchToProps = (dispatch) => ({
+  dispatch
 })
 
 const mapStateToDispatch = {
-  receiveConversation,
-  loadingConversation,
+  receiveConversation
 }
 
-export default connect(
-  mapStateToProps, 
-  mapStateToDispatch
-  )(ConversationContainer);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConversationContainer))

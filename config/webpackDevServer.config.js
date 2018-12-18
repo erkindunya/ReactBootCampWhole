@@ -1,5 +1,4 @@
 'use strict';
-const loremIpsum = require('lorem-ipsum')
 
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
@@ -86,33 +85,6 @@ module.exports = function(proxy, allowedHost) {
     public: allowedHost,
     proxy,
     before(app) {
-      app.use('/api/conversation',
-        (req, res) => {
-          let conversation = Array(15)
-            .fill(0)
-            .map(n => {
-              const message = loremIpsum({
-                  count: 1                      // Number of words, sentences, or paragraphs to generate.
-                , units: 'sentences'            // Generate words, sentences, or paragraphs.
-                , sentenceLowerBound: 5         // Minimum words per sentence.
-                , sentenceUpperBound: 15        // Maximum words per sentence.
-                , paragraphLowerBound: 3        // Minimum sentences per paragraph.
-                , paragraphUpperBound: 7        // Maximum sentences per paragraph.
-                , format: 'plain'               // Plain text or html
-                , words: ['react', 'graphql', 'redux', 'awesome' ]  // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
-              })
-              const me = Math.random() >= 0.5;
-              return ({
-                  "from": "you",
-                  "to":"crazypeacock512",
-                  "time":"2018-02-10T11:33:00Z",
-                  "message":message,
-                  "id": Math.random()
-              })
-            })
-          res.status(200).send(conversation)
-        }
-      ),
       // Middleware to simulate an authentication API
       app.use('/api/auth',
         bodyParser.json(),

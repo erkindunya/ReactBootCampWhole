@@ -4,7 +4,7 @@
 // to understand how combineReducers works, but you'll use it quite often, if
 // you want to understand how it works check the following video:
 // https://egghead.io/lessons/javascript-redux-implementing-combinereducers-from-scratch
-
+// reducer create key for all reducer
 export const combineReducers = (reducers) => {
   return (state = {}, action) => {
     // for every reducer (don't confuse our "reducer" functions with the

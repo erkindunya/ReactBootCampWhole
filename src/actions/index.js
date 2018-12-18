@@ -13,10 +13,14 @@ action creators
 */
 
 export const receiveThread = (thread) => ({
-    type: 'RECEIVE_THREAD',
+    type: RECEIVE_THREAD,
     thread
 })
 
+export const receiveConversation = (conversation) => ({
+    type: RECEIVE_CONVERSATION,
+    conversation
+})
 export const toggleMessageDetail = () => ({
     type: TOGGLE_MESSAGE_DETAIL,
 })
@@ -24,9 +28,4 @@ export const toggleMessageDetail = () => ({
 export const receiveMessage = (message) => ({
     type: RECEIVE_MESSAGE,
     message
-})
-
-export const receiveConversation = (conversation) => ({
-    type: RECEIVE_CONVERSATION,
-    conversation
 })

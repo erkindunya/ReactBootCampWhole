@@ -26,10 +26,12 @@ class ConversationContent extends Component {
   }
 
   render() {
-    const {
-      conversation = [], username, isMessageDetailOpen, fetchNextPage
-    } = this.props
+    const { conversation = [], username, isMessageDetailOpen } = this.props
     const { showModal } = this.state
+
+    if (!conversation.length) {
+      return <h2>Loading...</h2>
+    }
 
     return (
       <ConversationContentWrapper>
@@ -41,21 +43,20 @@ class ConversationContent extends Component {
           conversation={conversation}
           username={username}
           toggleModal={this.toggleModal}
-          fetchNextPage={fetchNextPage}
         />
-        { isMessageDetailOpen && <UserDetail
+        {isMessageDetailOpen && <UserDetail
           username={username}
           toggleModal={this.toggleModal}
-        /> }
+        />}
       </ConversationContentWrapper>
     )
   }
 }
 
 ConversationContent.propTypes = {
-  fetchNextPage: PropTypes.func.isRequired,
-  conversation: PropTypes.object.isRequired,
+  conversation: PropTypes.array,
   username: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired,
   isMessageDetailOpen: PropTypes.bool.isRequired,
 }
 
