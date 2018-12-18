@@ -1,17 +1,25 @@
 {
-  "name": "babel",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "babel": "./node_modules/.bin/babel index.js",
-    "babel:save": "npm run babel -- -o transpiled_index.js"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "es6-exercise",
+  "version": "0.0.1",
+  "description": "JavaScript ES6 Exercise",
+  "author": "LeanJS",
+  "license": "GPL3",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-jest": "^20.0.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^22.4.3",
+    "regenerator-runtime": "^0.10.5"
+  },
+  "scripts": {
+    "test": "jest --watch --noStackTrace "
+  },
+  "jest": {
+    "testURL": "http://localhost/"
+  },
+  "dependencies": {
+    "promise": "^7.1.1"
   }
 }
