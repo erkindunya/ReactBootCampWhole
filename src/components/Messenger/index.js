@@ -1,21 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
-import colours from '../../styles/export/colours.css'
+import PropTypes from 'prop-types'
+import { Route } from 'react-router-dom'
 
-import ThreadsContainer from './ThreadsContainer'
-import ConversationSection from './Conversation/ConversationSection'
+import Threads from './Threads'
+import Conversation from './Conversation/Conversation'
 
-const MessengerWrapper = styled.div`
-    display: flex;
-    flex: 1;
-  border-right: 1px solid ${colours.mediumGrey};
-`
-
-const Messenger = () => (
-  <MessengerWrapper>
-    <ThreadsContainer />
-    <ConversationSection />
-  </MessengerWrapper>
+const Messenger = ({ showSettings, toggleModal }) => (
+  <div className="messenger">
+    <Threads />
+    <Route path={`/messages/:username`} component={Conversation} />
+  </div>
 )
+
+Messenger.propTypes = {
+  showSettings: PropTypes.func,
+  newMessage: PropTypes.func,
+}
 
 export default Messenger

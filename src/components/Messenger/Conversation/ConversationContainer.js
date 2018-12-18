@@ -1,73 +1,37 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
-import {
-  receiveConversation,
-  loadingConversation,
-} from '../../../actions/conversation'
 import * as api from '../../../api/message'
 import Conversation from './Conversation'
 
 class ConversationContainer extends Component {
-  componentDidMount() {
-    this.fetchConversation(this.props.match.params.username)
+  constructor(props) {
+    super(props)
+
+    // hint, add some state here
   }
 
-  fetchConversation = async (username) => {
-    const {
-      api,
-      loadingConversation,
-      receiveConversation,
-      conversation
-    } = this.props
+  componentDidMount() {
+    // hint, you should fetch the threads here
+  }
 
-    try {
-      if (conversation.loading) {
-        return
-      }
-      loadingConversation(true)
-      const nextConversation = await api.fetchConversation(username)
-      receiveConversation(nextConversation)
-      loadingConversation(false)
-    } catch (error) {
-      loadingConversation(false)
+  // https://reactjs.org/docs/react-component.html#componentdidupdate
+  componentDidUpdate(prevProps) {
+    const needsToFetchUser = `Hint. Now you don't need to iterate the messages array
+    to see if the username in the url is different from the username's conversation you
+    are displaying. Use the prevProps parameter and the this.props in the following condition `
+    if (needsToFetchUser) {
+      this.fetchConversation(this.props.match.params.username)
     }
   }
 
   render() {
-    const { match, conversation } = this.props
+    const { conversation } = this.state
+    const { match } = this.props
 
     return (
-      <Conversation
-        conversation={conversation}
-        fetchNextPage={this.fetchConversation}
-        match={match}
-      />
+      // hint, which component and props do you think we should return here?
     )
   }
 }
 
-ConversationContainer.propTypes = {
-  match: PropTypes.object.isRequired,
-  conversation: PropTypes.object.isRequired,
-  receiveConversation: PropTypes.func.isRequired,
-}
-
-ConversationContainer.defaultProps = {
-  api
-}
-
-const mapStateToProps = (state) => ({
-  conversation: state.conversation,
-})
-
-const mapStateToDispatch = {
-  receiveConversation,
-  loadingConversation,
-}
-
-export default connect(
-  mapStateToProps, 
-  mapStateToDispatch
-  )(ConversationContainer);
+export default ConversationContainer

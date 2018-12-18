@@ -1,51 +1,48 @@
-# Description off the project
+# ReactJS Facebook messenger
 
-This todo app use react and redux. it was created just for one basic tutorial. The user's can add new todos, mark as completed, remove a todo, and filter todos.
+The goals of this exercise are to learn how to use a declarative routing using React Router v4, and learn how to fetch data into your components.
 
-## Screenshots
+## To get started
 
-![](/screenshots/00.jpg)
-![](/screenshots/01.jpg)
-![](/screenshots/03.jpg)
-![](/screenshots/04.jpg)
+### Step 1
 
-## How to install and run the app
-In the project directory, run in your terminal `npm install` and then `npm start`
+If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
 
-## Available Scripts
 
-In the project directory, you can run:
+### Step 2
+```sh
+ git checkout react-router
+ ``` 
+ 
+### Step 3
+```sh
+ npm i
+ ```
 
-### `npm start`
+## Exercise
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Implement the following route [http://localhost:3000/profile](http://localhost:3000/profile) so it renders src/components/Profile.js. Hint, you need to edit 2 files:
+    1. One file is the one where you define the /profile &lt;Route&gt;. Which file is that? Hint, think of the component tree and which component should be the parent of &lt;Profile&gt;. [Route documentation](https://reacttraining.com/react-router/web/api/Route)
+    2. The second file is src/components/Layout/TopBar.js, edit the &lt;Link&gt; so when the user clicks on the Link it navigates to /profile. [Link documentation](https://reacttraining.com/react-router/web/api/Link)
+2. Add a Link component in Profile.js to the path "/messages". Why do you think &lt;Link&gt; is better than &lt;a&gt;? Hint. Look at the network tab in the Chrome Dev Tools and navigate from one page to the other using &lt;Link&gt; and then using &lt;a&gt;
+3. The NotFound component should be displayed when no path matches in &lt;App&gt;. Example, navigating to [http://localhost:3000/bla-bla-bla](http://localhost:3000/bla-bla-bla) should display NotFound.js. Hint: [https://reacttraining.com/react-router/web/example/no-match](https://reacttraining.com/react-router/web/example/no-match)
+4. Refactor the Treads component so it implements the [container component pattern](https://medium.com/@learnreact/container-components-c0e67432e005). You have a ThreadsContainer file with some comments and tips. Hint: You will also have to edit the import in src/components/Messenger/index.js
+5. Refactor the Conversation component so it implements the [container component pattern](https://medium.com/@learnreact/container-components-c0e67432e005). You have a ConversationContainer file with some comments and tips. Hint: You will also have to edit the import in src/components/Messenger/index.js
+6. Move the logic on lines 36-44 of Conversation.js to the componentDidUpdate() lifecycle method in ConversationContainer.js. Why do you think [componentDidUpdate](https://reactjs.org/docs/react-component.html#componentdidupdate) is a better place?
+7. In the following url [http://localhost:3000/login](http://localhost:3000/login), the src/component/Login.js should not display the &lt;TopBar&gt; and &lt;Footer&gt;. HINT: Why not try moving the Login component up the tree.
+8. Display the number of messages in the ConversationBar.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Bonus
+- Refactor as many components as you can into stateless components, meaning using functions instead of classes to define the component.
+- Given this component &lt;Route path="/messages/:username" etc &gt; in src/components/Messenger/index, how can we replace the hardcoded string "/messages" in the path by a variable so we can move that Route in the component tree and the parent path of the Route is set dynamically? Hint, look at the Link component in src/components/Messenger/Conversation/ConversationBar.
+- The path /messages/:username/detail should display the UserDetail of a Conversation. The path /messages/:username should not display the UserDetail of a Conversation. You can navigate to /messages/:username/detail by clicking on the Link component in src/components/Messenger/Conversation/ConversationBar
+- [http://localhost:3000/messages](http://localhost:3000/messages) should not take 100% of the width of the screen. It should take the same width as when there is a Conversation selected. Hint, move the &lt;Route&gt; to the Conversation inside &lt;ConversationSection&gt;
+- Add prop-types to all the components that need it.
 
-### `npm test`
+## Articles and links
+- [Declarative Routing with React Router v4](https://medium.com/leanjs/declarative-routing-with-react-router-v4-7419c198e93f)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
 
-### `npm run build`
+## License
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](#deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
+This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).

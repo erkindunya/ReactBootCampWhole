@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import styled from 'styled-components'
 
 import UserDetail from './UserDetail'
 import Messages from './Messages'
 import Modal from '../../../Modal'
-
-const ConversationContentWrapper = styled.div`
-  display: flex;
-  height: 100%;
-`
 
 class ConversationContent extends Component {
   constructor() {
@@ -22,17 +15,21 @@ class ConversationContent extends Component {
   }
 
   toggleModal = () => {
-    this.setState({ showModal: !this.state.showModal })
+    this.setState((prevState, props) => ({
+      showModal: !prevState.showModal
+    }));
   }
 
   render() {
-    const {
-      conversation = [], username, isMessageDetailOpen, fetchNextPage
-    } = this.props
+    const { conversation = [], username, match } = this.props
     const { showModal } = this.state
 
+    if (!conversation.length) {
+      return <h2>Loading...</h2>
+    }
+
     return (
-      <ConversationContentWrapper>
+      <div className="conversation-content">
         <Modal
           show={showModal}
           toggleModal={this.toggleModal}
@@ -41,26 +38,22 @@ class ConversationContent extends Component {
           conversation={conversation}
           username={username}
           toggleModal={this.toggleModal}
-          fetchNextPage={fetchNextPage}
         />
-        { isMessageDetailOpen && <UserDetail
-          username={username}
-          toggleModal={this.toggleModal}
-        /> }
-      </ConversationContentWrapper>
+        <Route path={`${match.url}/detail`} component={props => (
+          <UserDetail
+            username={username}
+            toggleModal={this.toggleModal}
+          />
+        )} />
+      </div>
     )
   }
 }
 
 ConversationContent.propTypes = {
-  fetchNextPage: PropTypes.func.isRequired,
-  conversation: PropTypes.object.isRequired,
+  conversation: PropTypes.array,
   username: PropTypes.string.isRequired,
-  isMessageDetailOpen: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state) => ({
-  isMessageDetailOpen: state.ui.isMessageDetailOpen
-})
-
-export default connect(mapStateToProps)(ConversationContent)
+export default ConversationContent
