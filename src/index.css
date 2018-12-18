@@ -6,7 +6,6 @@ html, body {
   height: 100%; }
 
 .app {
-  background-color: #ffffff;
   overflow: hidden;
   flex: 1;
   flex-flow: row wrap;
@@ -21,167 +20,165 @@ html, body {
   height: 100vh;
   padding: 0;
   margin: 0; }
-
-.top-bar {
-  background: #4267b2;
-  padding: 1em;
-  text-align: center;
-  border-bottom: 1px solid #29487d;
-  color: #ffffff; }
-  .top-bar a, .top-bar .icon {
+  .app .top-bar {
+    background: #4267b2;
+    padding: 1em;
+    text-align: center;
+    border-bottom: 1px solid #29487d;
     color: #ffffff; }
-  .top-bar a {
-    cursor: pointer; }
-  .top-bar ul {
-    list-style: none;
-    position: absolute;
-    top: 20px;
-    display: block; }
-    .top-bar ul img {
-      border-radius: 50%;
-      height: 50px;
-      height: 30px;
-      margin-top: -5px; }
-    .top-bar ul li {
-      display: inline-block;
-      padding-right: 8px;
-      padding-left: 8px; }
-      .top-bar ul li:last-child {
-        padding-right: 0; }
-      .top-bar ul li:first-child {
-        padding-left: 0; }
-    .top-bar ul.right {
-      right: 20px; }
-    .top-bar ul.left {
-      left: 20px; }
-
-.messenger {
-  display: flex;
-  flex: 1;
-  border-right: 1px solid #bdc7d8; }
-  .messenger .conversation {
+    .app .top-bar a, .app .top-bar .icon {
+      color: #ffffff; }
+    .app .top-bar a {
+      cursor: pointer; }
+    .app .top-bar ul {
+      list-style: none;
+      position: absolute;
+      top: 20px;
+      display: block; }
+      .app .top-bar ul img {
+        border-radius: 50%;
+        height: 50px;
+        height: 30px;
+        margin-top: -5px; }
+      .app .top-bar ul li {
+        display: inline-block;
+        padding-right: 8px;
+        padding-left: 8px; }
+        .app .top-bar ul li:last-child {
+          padding-right: 0; }
+        .app .top-bar ul li:first-child {
+          padding-left: 0; }
+      .app .top-bar ul.right {
+        right: 20px; }
+      .app .top-bar ul.left {
+        left: 20px; }
+  .app .messenger {
     display: flex;
-    flex-direction: column;
-    flex: 3; }
-    .messenger .conversation .conversation-bar {
-      position: relative;
-      border-bottom: 1px solid #bdc7d8;
-      padding: 1.05em;
-      align-items: center; }
-      .messenger .conversation .conversation-bar h2 {
-        text-transform: capitalize; }
-      .messenger .conversation .conversation-bar .conversation-menu {
-        position: absolute;
-        right: 5px;
-        top: 15px; }
-        .messenger .conversation .conversation-bar .conversation-menu > div {
-          display: inline-block; }
-        .messenger .conversation .conversation-bar .conversation-menu .icon {
-          margin: 0 0.5em; }
-    .messenger .conversation .conversation-content {
+    flex: 1;
+    border-right: 1px solid #bdc7d8; }
+    .app .messenger .conversation {
       display: flex;
-      height: 100%; }
-      .messenger .conversation .conversation-content .messages {
-        display: flex;
-        flex: 2;
-        flex-direction: column;
-        justify-content: space-between; }
-        .messenger .conversation .conversation-content .messages .list {
-          padding: 1em;
-          overflow-y: auto; }
-          .messenger .conversation .conversation-content .messages .list p {
-            color: #999999;
-            font-size: 0.9em; }
-          .messenger .conversation .conversation-content .messages .list .message-wrapper {
-            padding: 0.5em;
-            display: flex; }
-            .messenger .conversation .conversation-content .messages .list .message-wrapper.sent {
-              justify-content: flex-end; }
-              .messenger .conversation .conversation-content .messages .list .message-wrapper.sent .message {
-                background: #0084ff;
-                color: #ffffff; }
-              .messenger .conversation .conversation-content .messages .list .message-wrapper.sent .message-read {
-                display: flex;
-                flex-flow: column;
-                justify-content: flex-end; }
-                .messenger .conversation .conversation-content .messages .list .message-wrapper.sent .message-read .icon {
-                  font-size: 0.6rem;
-                  cursor: auto; }
-            .messenger .conversation .conversation-content .messages .list .message-wrapper.received .message {
-              background: #f1f0f0; }
-            .messenger .conversation .conversation-content .messages .list .message-wrapper .message {
-              border-radius: 20px;
-              padding: 0.5em 1em;
-              display: inline-block;
-              font-size: 0.9rem; }
-        .messenger .conversation .conversation-content .messages .new-message {
-          min-height: 20px;
-          padding: 1em;
-          border-top: 1px solid #bdc7d8;
-          font-size: 0.9rem;
-          display: flex;
-          justify-content: space-between;
-          height: 60px; }
-          .messenger .conversation .conversation-content .messages .new-message .message-box {
-            color: #bdc7d8;
-            border-color: transparent; }
-      .messenger .conversation .conversation-content .user-detail {
-        width: 33.3%;
-        border-left: 1px solid #bdc7d8; }
-        .messenger .conversation .conversation-content .user-detail > div {
-          padding: 1em;
-          font-size: 0.9em;
-          color: #999999;
-          border-bottom: 1px solid #bdc7d8; }
-          .messenger .conversation .conversation-content .user-detail > div:last-child {
-            border-bottom: none; }
-        .messenger .conversation .conversation-content .user-detail .user {
-          display: flex;
-          justify-content: space-between;
-          align-items: center; }
-          .messenger .conversation .conversation-content .user-detail .user > div {
-            display: flex;
-            align-items: center; }
-            .messenger .conversation .conversation-content .user-detail .user > div .user-name {
-              font-size: 0.9rem;
-              text-transform: capitalize; }
-            .messenger .conversation .conversation-content .user-detail .user > div .last-active {
-              font-size: 0.75rem;
-              color: #999999; }
-  .messenger .threads {
-    display: flex;
-    border-right: 1px solid #bdc7d8;
-    flex-direction: column;
-    flex: 1; }
-    .messenger .threads .thread-bar {
-      border-bottom: 1px solid #bdc7d8;
-      padding: 0.85em; }
-      .messenger .threads .thread-bar h2 {
-        display: flex;
-        align-items: center;
-        align-content: center;
-        justify-content: space-between; }
-    .messenger .threads .thread-list {
-      overflow-y: auto;
-      width: 100%;
-      list-style: none inside none;
-      padding: 0;
-      margin: 0; }
-      .messenger .threads .thread-list li {
-        display: flex;
-        align-items: center;
-        padding: 0.4em 0.75em; }
-        .messenger .threads .thread-list li:hover {
-          background: #f1f0f0;
-          cursor: pointer; }
-        .messenger .threads .thread-list li span {
-          font-size: 0.9em;
+      flex-direction: column;
+      flex: 3; }
+      .app .messenger .conversation .conversation-bar {
+        position: relative;
+        border-bottom: 1px solid #bdc7d8;
+        padding: 1.05em;
+        align-items: center; }
+        .app .messenger .conversation .conversation-bar h2 {
           text-transform: capitalize; }
-        .messenger .threads .thread-list li small {
-          font-size: 0.8em;
-          color: #999999;
-          margin: 2px 0;
-          display: block; }
+        .app .messenger .conversation .conversation-bar .conversation-menu {
+          position: absolute;
+          right: 5px;
+          top: 15px; }
+          .app .messenger .conversation .conversation-bar .conversation-menu > div {
+            display: inline-block; }
+          .app .messenger .conversation .conversation-bar .conversation-menu .icon {
+            margin: 0 0.5em; }
+      .app .messenger .conversation .conversation-content {
+        display: flex;
+        height: 100%; }
+        .app .messenger .conversation .conversation-content .messages {
+          display: flex;
+          flex: 2;
+          flex-direction: column;
+          justify-content: space-between; }
+          .app .messenger .conversation .conversation-content .messages .list {
+            padding: 1em;
+            overflow-y: auto; }
+            .app .messenger .conversation .conversation-content .messages .list p {
+              color: #999999;
+              font-size: 0.9em; }
+            .app .messenger .conversation .conversation-content .messages .list .message-wrapper {
+              padding: 0.5em;
+              display: flex; }
+              .app .messenger .conversation .conversation-content .messages .list .message-wrapper.sent {
+                justify-content: flex-end; }
+                .app .messenger .conversation .conversation-content .messages .list .message-wrapper.sent .message {
+                  background: #0084ff;
+                  color: #ffffff; }
+                .app .messenger .conversation .conversation-content .messages .list .message-wrapper.sent .message-read {
+                  display: flex;
+                  flex-flow: column;
+                  justify-content: flex-end; }
+                  .app .messenger .conversation .conversation-content .messages .list .message-wrapper.sent .message-read .icon {
+                    font-size: 0.6rem;
+                    cursor: auto; }
+              .app .messenger .conversation .conversation-content .messages .list .message-wrapper.received .message {
+                background: #f1f0f0; }
+              .app .messenger .conversation .conversation-content .messages .list .message-wrapper .message {
+                border-radius: 20px;
+                padding: 0.5em 1em;
+                display: inline-block;
+                font-size: 0.9rem; }
+          .app .messenger .conversation .conversation-content .messages .new-message {
+            min-height: 20px;
+            padding: 1em;
+            border-top: 1px solid #bdc7d8;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            height: 60px; }
+            .app .messenger .conversation .conversation-content .messages .new-message .message-box {
+              color: #bdc7d8;
+              border-color: transparent; }
+        .app .messenger .conversation .conversation-content .user-detail {
+          width: 33.3%;
+          border-left: 1px solid #bdc7d8; }
+          .app .messenger .conversation .conversation-content .user-detail > div {
+            padding: 1em;
+            font-size: 0.9em;
+            color: #999999;
+            border-bottom: 1px solid #bdc7d8; }
+            .app .messenger .conversation .conversation-content .user-detail > div:last-child {
+              border-bottom: none; }
+          .app .messenger .conversation .conversation-content .user-detail .user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; }
+            .app .messenger .conversation .conversation-content .user-detail .user > div {
+              display: flex;
+              align-items: center; }
+              .app .messenger .conversation .conversation-content .user-detail .user > div .user-name {
+                font-size: 0.9rem;
+                text-transform: capitalize; }
+              .app .messenger .conversation .conversation-content .user-detail .user > div .last-active {
+                font-size: 0.75rem;
+                color: #999999; }
+    .app .messenger .threads {
+      display: flex;
+      border-right: 1px solid #bdc7d8;
+      flex-direction: column;
+      flex: 1; }
+      .app .messenger .threads .thread-bar {
+        border-bottom: 1px solid #bdc7d8;
+        padding: 0.85em; }
+        .app .messenger .threads .thread-bar h2 {
+          display: flex;
+          align-items: center;
+          align-content: center;
+          justify-content: space-between; }
+      .app .messenger .threads .thread-list {
+        overflow-y: auto;
+        width: 100%;
+        list-style: none inside none;
+        padding: 0;
+        margin: 0; }
+        .app .messenger .threads .thread-list li {
+          display: flex;
+          align-items: center;
+          padding: 0.4em 0.75em; }
+          .app .messenger .threads .thread-list li:hover {
+            background: #f1f0f0;
+            cursor: pointer; }
+          .app .messenger .threads .thread-list li span {
+            font-size: 0.9em;
+            text-transform: capitalize; }
+          .app .messenger .threads .thread-list li small {
+            font-size: 0.8em;
+            color: #999999;
+            margin: 2px 0;
+            display: block; }
 
 .avatar {
   margin-right: 0.5em; }

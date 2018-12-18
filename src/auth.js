@@ -10,6 +10,7 @@ export const getSession = () => {
       // what is window.atob ?
       // https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/atob
       session = JSON.parse(window.atob(base64))
+      //<Link to="/about">About</Link>
     }
   } catch (error) {
     console.log(error)
