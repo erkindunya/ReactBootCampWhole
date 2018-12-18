@@ -15,6 +15,8 @@ import Accordion from "./patterns/Context/exercise/Accordion";
 import CompositionPage from "./functional-programming/composition/Page";
 import ClosurePage from "./functional-programming/closure/Page";
 import StateReducerPage from "./patterns/StateReducer/Page";
+import Theming from "./patterns/Theming/Page";
+import Variants from "./patterns/Variants/Page";
 
 class App extends React.Component {
   constructor() {
@@ -86,6 +88,12 @@ class App extends React.Component {
                 9. Context
               </MenuItem>
             </Accordion>
+            <MenuItem link="/theming" toggleMenu={this.toggleMenu}>
+              5. Theming
+            </MenuItem>
+            <MenuItem link="/variants" toggleMenu={this.toggleMenu}>
+              6. Variants
+            </MenuItem>
             <hr />
             <ul className="list-unstyled">
               <li>
@@ -111,17 +119,7 @@ class App extends React.Component {
             </ul>
           </Menu>
           <div style={styles} className="view-container">
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <h1>
-                  Welcome to functional programming and advanced patterns in
-                  React!
-                </h1>
-              )}
-            />
-            <Route path="/composition" component={CompositionPage} />
+            <Route exact path="/" component={CompositionPage} />
             <Route path="/closure" component={ClosurePage} />
             <Route
               path="/higher-order-components"
@@ -134,6 +132,8 @@ class App extends React.Component {
               component={CompoundComponentsPage}
             />
             <Route path="/context" component={ContextPage} />
+            <Route path="/theming" component={Theming} />
+            <Route path="/variants" component={Variants} />
           </div>
         </div>
       </Root>
@@ -141,4 +141,5 @@ class App extends React.Component {
   }
 }
 
+//export default withWidth({largeWidth:100, mediumWidth:50})(App);
 export default withWidth(App);

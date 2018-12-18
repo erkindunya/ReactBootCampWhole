@@ -1,9 +1,10 @@
 function add(x) {
-  return function(y) {
+return function (y){
     return x + y;
-  };
-}
+    };
+  }
 
+  //const add = x=> 
 const addFive = add(5);
 
 let result;

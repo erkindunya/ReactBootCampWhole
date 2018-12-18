@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 
-export const SMALL = 1
-export const MEDIUM = 2
-export const LARGE = 3
+export const SMALL = 1;
+export const MEDIUM = 2;
+export const LARGE = 3;
 
 const withWidth = (MyComponent) => {
   const largeWidth = 992,
         mediumWidth = 768
+//} =>({}) MyComponent => {
 
-  return class WithWidth extends Component {
+
+return class WithWidth extends Component {
     constructor() {
       super()
       this.state = { width: this.windowWidth() }
@@ -48,10 +50,14 @@ const withWidth = (MyComponent) => {
     }
 
     render() {
+      const {width, largeWidth,mediumWidth} =this.state;
+
       return (
         <MyComponent
           { ...this.props }
-          width={ this.state.width }
+          width={width }
+          largeWidth={largeWidth }
+          mediumWidth={mediumWidth }
         />
       )
     }
