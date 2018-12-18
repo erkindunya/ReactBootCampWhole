@@ -1,27 +1,38 @@
-# Babel exercise
+# ReactJS Facebook messenger
 
-The goal of this exercise is to understand some basics of Babel.
+The goal of this exercise is to learn how to start testing in JavaScript.
 
-## Get started
+## To get started
 
-If you have npm:
-`git clone https://github.com/leanjscom/babel-exercise.git && cd babel-exercise && npm install`
+### Step 1
 
-## Exercise
+If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
 
-1- Run this command **`node index.js`** and you'll see an error. Where is the problem?
 
-2- Run this command **`npm install --save-dev babel-cli babel-preset-es2015`**
+### Step 2
+```sh
+ git checkout testing-intro
+ ```
 
-3- You should configure babel using the presets in the .babelrc file. Let's add the following presets:
-**`{
-  "presets": ["es2015"]
-}`**
+### Step 3
+```sh
+ npm i
+ ```
 
-4- If this is working you should be able to see the transpiled code by running: **`npm run babel`**
+## Bonus
 
-5- Now you can use the -o flag to output this into a file: **`npm run babel:save`**
+Use [deepFreeze](https://github.com/substack/deep-freeze) in your reducers to make sure the state is not mutated
 
-6- Now you should be able to run the transpiled file by running: **`node transpiled_index.js`**
 
-7- More questions? Don't forget to check out the docs, in particular: http://babeljs.io/docs/usage/cli/
+## Articles and links
+
+- [https://reactjs.academy/blog/unit-testing-fundamentals-explained-using-javascript/](https://reactjs.academy/blog/unit-testing-fundamentals-explained-using-javascript/)
+- [https://martinfowler.com/bliki/TestPyramid.html](https://martinfowler.com/bliki/TestPyramid.html)
+- [https://facebook.github.io/jest/docs/en/expect.html#content](https://facebook.github.io/jest/docs/en/expect.html#content)
+- [https://martinfowler.com/articles/mocksArentStubs.html](https://martinfowler.com/articles/mocksArentStubs.html)
+- [https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)
+- [https://www.youtube.com/watch?v=EZ05e7EMOLM](https://www.youtube.com/watch?v=EZ05e7EMOLM)
+
+## License
+
+This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).
