@@ -1,74 +1,36 @@
-# ReactJS Academy Hackathon
+# ReactJS Facebook messenger
 
-## hackathon ideas
+The goal of this exercise is to learn how to test React components.
 
-- autocomplete search app with star wars api by [@horacioh]()
-- weather app that shows 4 cities forecast by [@horacioh]()
-- Github search repositories and star them by [@horacioh]()
-- CV app with Gatsby by you?
+## To get started
 
----
+### Step 1
 
-## Resources
+If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
 
-- Free GraphQL APIs (maybe some of them does not work): https://github.com/APIs-guru/graphql-apis
-- create a Github token: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
-- apollo client documentation:https://www.apollographql.com/docs/react/essentials/get-started.html
-- SWAPI GraphQL API (maybe a good try to change the app to use this API?): https://graphql.org/swapi-graphql/
-- rebass UI Library Documentation: http://jxnblk.com/rebass/getting-started
-- create an Unsplash App to get your tokens (need an account to get this): https://unsplash.com/oauth/applications/new
-- Gatsby docs tutorial: https://www.gatsbyjs.org/tutorial/
 
----
+### Step 2
+```sh
+ git checkout testing-react
+ ```
 
-## Tutorials
+### Step 3
+```sh
+ npm i
+ ```
 
-### If you want to work with GraphQL
+## Exercise
 
-```bash
-npm install --save apollo-boost react-apollo graphql graphql-tag
-```
+1- Replace all the tests in src/actions for snapshot tests. You have an example in src/actions/ui.test.js
 
-or
+## Articles and links
 
-```bash
-yarn add apollo-boost react-apollo graphql graphql-tag
-```
+- [https://martinfowler.com/bliki/TestPyramid.html](https://martinfowler.com/bliki/TestPyramid.html)
+- [https://facebook.github.io/jest/docs/en/expect.html#content](https://facebook.github.io/jest/docs/en/expect.html#content)
+- [https://martinfowler.com/articles/mocksArentStubs.html](https://martinfowler.com/articles/mocksArentStubs.html)
+- [https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)
+- [https://www.youtube.com/watch?v=EZ05e7EMOLM](https://www.youtube.com/watch?v=EZ05e7EMOLM)
 
-in your root app file (`App.js` or `Root.js`)
+## License
 
-```jsx
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
-
-const client = new ApolloClient({
-  uri: "GRAPHQL_API_ENDPOINT" // example: https://api.github.com/graphql
-});
-
-function App() {
-  return (
-    <ApolloProvider client={client}>
-      <MyAwesomeApp />
-    </ApolloProvider>
-  );
-}
-```
-
----
-
-### If you want to use the Github GraphQL API, you need to [create a token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and add it as a header to every request like this:
-
-```js
-const client = new ApolloClient({
-  uri: "https://api.github.com/graphql",
-  headers: {
-    Authorization: "bearer YOUR_GITHUB_TOKEN"
-  }
-});
-```
-
-you can see all the configuration options here: [https://www.apollographql.com/docs/react/essentials/get-started.html#configuration](https://www.apollographql.com/docs/react/essentials/get-started.html#configuration)
-
----
-
-## Happy Coding! :)
+This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).
