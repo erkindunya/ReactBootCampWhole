@@ -1,10 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import MainReducer from './reducers/MainReducer'
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
-import configureStore from "./store"
-import Root from './components/Root'
-import "./styles/index.css"
+const store = compose(window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore)(MainReducer)
 
-const store = configureStore()
-
-ReactDOM.render(<Root store={store} />, document.getElementById('root'))
+ReactDOM.render(<Provider store={store}>
+<App />
+</Provider>
+, document.getElementById('root'));
+registerServiceWorker();

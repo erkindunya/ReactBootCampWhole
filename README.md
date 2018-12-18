@@ -1,49 +1,51 @@
-# ReactJS Facebook messenger
+# Description off the project
 
-The goal of this exercise is to learn how to use Redux in a React app.
+This todo app use react and redux. it was created just for one basic tutorial. The user's can add new todos, mark as completed, remove a todo, and filter todos.
 
-## To get started
+## Screenshots
 
-### Step 1
+![](/screenshots/00.jpg)
+![](/screenshots/01.jpg)
+![](/screenshots/03.jpg)
+![](/screenshots/04.jpg)
 
-If you haven't already set up your project, head here and follow the instructions https://github.com/leanjscom/fb-messenger/blob/master/README.md
+## How to install and run the app
+In the project directory, run in your terminal `npm install` and then `npm start`
 
+## Available Scripts
 
-### Step 2
-```sh
- git checkout redux
- ```
+In the project directory, you can run:
 
-### Step 3
-```sh
- npm i
- ```
+### `npm start`
 
-## Exercise
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-1. Create a logger middleware to log in the console every action that is dispatched
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-2. Follow the next steps:
-  - `git checkout advanced-redux-part2`
-  - When you run `yarn start` you'll get the following error: "Actions must be plain objects. Use custom middleware for async actions." To fix it you must create a thunk middleware in store/index.js.
-  - When your thunk middleware works you should see the list of Threads on http://localhost:300X/messages
+### `npm test`
 
-3. Refactor your logger and thunk middleware so you can use them along with `{ applyMiddleware } from 'redux'` in the createStore function
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](#running-tests) for more information.
 
-4. In configureStore.dev.js, replace the addLoggerMiddleware and addPromiseSupportToDispatch that you've created with the ones in npm: `redux-logger` and `redux-thunk`. Note, we already did `yarn add redux-logger` and `yarn add redux-thunk`.
+### `npm run build`
 
-5. Steps before you do this task: 1) checkout https://github.com/leanjscom/fb-messenger/tree/advanced-redux-part5, 2) npm stop && npm start. Using thunks, add loading indicators to fetch the conversation you have to:
-  - Implement the fetchConversation defined in actions/conversation.js. Hint, you need to copy & paste the logic defined in the method called "fetchConversation" in Messenger/ConversationContainer.js. Then refactor those "props"
-  - Dispatch the fetchConversation action in Messenger/ConversationContainer.js instead of receiveConversation & loadingConversation.
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-6. use reselect to implement a conversation selector
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-### Bonus
+See the section about [deployment](#deployment) for more information.
 
-## Links
+### `npm run eject`
 
-- [https://egghead.io/courses/building-react-applications-with-idiomatic-redux](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## License
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
