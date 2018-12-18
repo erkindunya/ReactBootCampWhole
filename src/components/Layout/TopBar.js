@@ -19,11 +19,9 @@ const TopBarItems = styled.ul`
     position: absolute;
     top: 20px;
     display: block;
-
     ${props => props.position === 'right' && css`
       right: 20px;
     `}
-
     ${props => props.position === 'left' && css`
       left: 20px;
     `}

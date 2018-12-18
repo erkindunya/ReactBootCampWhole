@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { toggleMessageDetail } from '../../../actions'
+import { toggleMessageDetail } from '../../../actions/ui'
 import Icon from '../../Layout/Icon'
 import colours from '../../../styles/export/colours.css'
 
@@ -26,27 +26,28 @@ const ConversationMenu = styled.div`
   }
 `
 
-const ConversationBar = ({ username, match, conversation =[], dispatch }) => (
+const ConversationBar = ({ username, match, conversation, dispatch }) => (
   <ConversationBarWrapper>
     <h2>
       {username}
-      {conversation.length ? (
+      {conversation.data.length ? (
         <em>
-          &nbsp; (<strong>{conversation.length}</strong> messages)
+          &nbsp; (<strong>{conversation.data.length}</strong> messages)
         </em>
-      ) : ''}
+      ):''}
     </h2>
     <ConversationMenu>
-      <Icon name="phone" style={{ margin: '0 0.5em' }} />
-      <Icon name="video" style={{ margin: '0 0.5em' }} />
+      <Icon name="phone" style={{margin: '0 0.5em'}}/>
+      <Icon name="video" style={{margin: '0 0.5em'}}/>
       <a onClick={() => dispatch(toggleMessageDetail())}>
-        <Icon name="info-circle" active style={{ margin: '0 0.5em' }} />
+        <Icon name="info-circle" active style={{margin: '0 0.5em'}}/>
       </a>
     </ConversationMenu>
   </ConversationBarWrapper>
 )
 
 ConversationBar.propTypes = {
+  conversation: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   username: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,

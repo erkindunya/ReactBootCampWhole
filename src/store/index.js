@@ -1,7 +1,19 @@
-import { createStore } from 'redux'
-//import { createStore } from '../redux/createStore'
+import { createStore, applyMiddleware } from 'redux'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
+
 import reducers from '../reducers'
 
-export const configureStore = (initialState) => {
-  return createStore(reducers, initialState)
+const configureStore = () => {
+  const store = createStore(
+    reducers,
+    applyMiddleware(
+      thunk,
+      logger
+    )
+  )
+
+  return store
 }
+
+export default configureStore
